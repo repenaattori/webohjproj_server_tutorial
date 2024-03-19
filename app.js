@@ -1,5 +1,6 @@
 require('dotenv').config();
 const student = require('./routes/student');
+const auth = require('./routes/authentication');
 
 const express = require('express');
 const app = express();
@@ -10,7 +11,9 @@ app.use( express.urlencoded({extended: false}) );
 app.use(upload.none());
 app.use(express.json());
 
+//Adding routes
 app.use('/student', student);
+app.use('/auth',  auth);
 
 const PORT = process.env.PORT || 3001;
 

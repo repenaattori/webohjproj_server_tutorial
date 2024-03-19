@@ -1,6 +1,8 @@
 require('dotenv').config();
 const student = require('./routes/student');
 
+const pgPool = require('./database/pg_connection');
+
 const express = require('express');
 const app = express();
 const multer = require('multer');

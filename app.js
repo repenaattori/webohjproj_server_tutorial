@@ -1,5 +1,5 @@
 require('dotenv').config();
-const users = require('./routes/users');
+const student = require('./routes/student');
 
 const express = require('express');
 const app = express();
@@ -10,7 +10,7 @@ app.use( express.urlencoded({extended: false}) );
 app.use(upload.none());
 app.use(express.json());
 
-app.use('/users', users);
+app.use('/student', student);
 
 const PORT = process.env.PORT || 3001;
 

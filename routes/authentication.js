@@ -1,6 +1,8 @@
+require('dotenv').config();
 const router = require('express').Router();
 const bcrypt = require('bcrypt');
 const { register, getPw } = require('../database/auth_db');
+const jwt = require('jsonwebtoken');
 
 router.post('/register',async (req, res) => {
     const fname = req.body.fname;
@@ -26,8 +28,8 @@ router.post('/login', async (req,res)=>{
         const isAuth = await bcrypt.compare(pw, db_pw);
         if(isAuth){
             //luodaan token
-            const token = 'adsfasdfaasf';
-            res.status(200).json({jwtToken: token});
+            const token = jwt.sign({username: uname }, process.env.JWT_SECRET);
+            res.status(200).json({jwtToken: token},);
         }else{
             res.status(401).json({error: 'Wrong password'});            
         }
